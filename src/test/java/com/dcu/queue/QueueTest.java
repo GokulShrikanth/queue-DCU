@@ -97,4 +97,44 @@ public class QueueTest {
         assertTrue(queue.isEmpty());
         assertEquals(0, queue.size());
     }
+
+    @Test
+    public void testEnqueueNullItem() {
+        queue.enqueue(null);
+        // assertTrue(queue.isEmpty()); Failed Test case as we are pushing an object with null value
+        assertFalse(queue.isEmpty());
+    }
+
+    @Test
+    public void testDequeueEmptyQueue() {
+        assertNull(queue.dequeue());
+    }
+
+    @Test
+    public void testPeekEmptyQueue() {
+        assertNull(queue.peek());
+    }
+
+    @Test
+    public void testSizeAfterClear() {
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        queue.clear();
+
+        assertEquals(0, queue.size());
+    }
+
+    @Test
+    public void testDequeueAllItems() {
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        assertEquals(1, (int) queue.dequeue());
+        assertEquals(2, (int) queue.dequeue());
+        assertEquals(3, (int) queue.dequeue());
+        assertTrue(queue.isEmpty());
+    }
 }
